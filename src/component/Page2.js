@@ -7,12 +7,19 @@ function Page2() {
   const nameStore = useNameStore();
   const [newName, setNewName] = useState();
   const [status, setStatus] = useState();
+  const [error, setError] = useState();
+
   const submit = (id) => {
     if (!newName) {
       setStatus("disabled");
+      setError("Please enter a name");
+
     } else {
       console.log("new Name", newName, "Id", id);
+      setError("");
+
       nameStore.addName(newName, id);
+
       setNewName(" ");
     }
   };
@@ -25,6 +32,7 @@ function Page2() {
           <p style={{ padding: "10px" }}>{a.name}</p>
           <p style={{ padding: "10px" }}>Id: {a.id}</p>
           <input onChange={(e) => setNewName(e.target.value)} type="text" />
+          <p>{error}</p>
           <button onClick={() => nameStore.removeName(a.id)}> Delete</button>
           {/* <button onClick={submit(a.id)}>submit</button> */}
           {/* <button onClick={(e) => nameStore.updateName(a.id, newName)}>
