@@ -6,11 +6,14 @@ function Page1() {
   const nameStore = useNameStore();
   const [name, setName] = useState();
   const [status, setStatus] = useState();
+  const [error, setError] = useState();
 
   const submit = () => {
     if (!name) {
       setStatus("disabled");
+      setError("Please enter a name");
     } else {
+      setError("");
       nameStore.addName(name);
       setName("");
     }
@@ -24,7 +27,7 @@ function Page1() {
         onChange={(e) => setName(e.target.value)}
         type="text"
       />
-
+      <p>{error}</p>
       <button onClick={submit} {...status}>
         Add note
       </button>
