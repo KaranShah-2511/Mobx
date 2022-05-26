@@ -13,10 +13,7 @@ function Page3() {
     console.log("name", name);
     if (result) {
       nameStore.undoName(id, name);
-
-      //   return;
     }
-    // console.log("You click No!");
   };
 
   return useObserver(() => (

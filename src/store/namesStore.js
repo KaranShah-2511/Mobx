@@ -5,7 +5,7 @@ export function createNamesStore() {
     names: [],
     deleteNames: [],
     secondArray: [],
-    addName(name, id) {
+    addName(name, id ) {
       if (id) {
         const oldName = this.names.find((name) => name.id == id);
         if (oldName) {

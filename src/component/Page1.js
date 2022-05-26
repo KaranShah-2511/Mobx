@@ -14,16 +14,17 @@ function Page1() {
       setError("Please enter a name");
     } else {
       setError("");
-      nameStore.addName(name);
+      nameStore.addName(name );
       setName("");
     }
   };
-
   return (
     <div>
       <h1>Enter Name</h1>
+
       <input
-        value={name || ''}
+        value={name || ""}
+        placeholder="Enter Name"
         onChange={(e) => setName(e.target.value)}
         type="text"
       />
