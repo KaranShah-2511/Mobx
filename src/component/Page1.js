@@ -21,7 +21,7 @@ function Page1() {
 
   return (
     <div>
-      <h1>Page 1</h1>
+      <h1>Enter Name</h1>
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}

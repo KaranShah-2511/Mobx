@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 export function createNamesStore() {
   return {
     names: [],
+    deleteNames: [],
     addName(name, id) {
       if (id) {
         const oldName = this.names.find((name) => name.id == id);
@@ -15,9 +16,21 @@ export function createNamesStore() {
         this.names.push({ name, id: nanoid() });
       }
     },
-    removeName(id) {
+    // removeName(id) {
+    //   this.names = this.names.filter((name) => name.id !== id);
+    // },
+    deletedName(id, name) {
+      this.deleteNames.push({ name, id: id });
       this.names = this.names.filter((name) => name.id !== id);
+
     },
+    // recoverName(id, name) {
+    //   this.deleteNames = this.deleteNames.filter((name) => name.id !== id);
+    // },
+    undoName(id, name) {
+        this.names.push({ name, id: id });
+        this.deleteNames = this.deleteNames.filter((name) => name.id !== id);
+        }
   };
 }
 

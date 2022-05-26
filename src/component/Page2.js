@@ -7,12 +7,12 @@ import { confirm } from "react-confirm-box";
 function Page2() {
   const del = async (id, name) => {
     console.log("id", id);
-    const result = await confirm("Are you sure?", id);
-    console.log(result);
+    const result = await confirm("Are you sure you want to delete?");
+    console.log("result.....", result);
     console.log("name", name);
     if (result) {
-      nameStore.removeName(id);
-      setdelmessage( name + " deleted");
+      nameStore.deletedName(id, name);
+      setdelmessage(name + " deleted");
       //   return;
     }
     // console.log("You click No!");
@@ -29,7 +29,6 @@ function Page2() {
       setStatus("disabled");
       setError("Please enter a name");
     } else {
-      //   console.log("new Name", newName, "Id", id);
       setError("");
 
       nameStore.addName(newName, id);
@@ -40,7 +39,6 @@ function Page2() {
 
   return useObserver(() => (
     <div>
-      <h1>Page 2</h1>
       <p>{delmessage}</p>
       {nameStore.names.map((a) => (
         <div style={{ display: "flex", padding: "20px" }}>
