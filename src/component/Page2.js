@@ -23,7 +23,9 @@ function Page2() {
   const [status, setStatus] = useState();
   const [error, setError] = useState();
   const [delmessage, setdelmessage] = useState();
+
   const [checkedData, setCheckedData] = useState([]);
+  
   console.log("checkedData.....", checkedData);
   const submit = (id) => {
     if (!newName) {
@@ -38,7 +40,7 @@ function Page2() {
     console.log("new Name", newName, "Id", id);
   };
   const move = () => {
-    // console.log("checkedData.....", checkedData);
+    console.log("checkedData.....", checkedData);
   
     nameStore.moveData(checkedData);
   };
@@ -51,19 +53,25 @@ function Page2() {
     if (value) {
       //   console.log("name", name);
       //   console.log("id", id);
-      setCheckedData({
-        ...checkedData,
-        [id]: {
-          name: name,
-          id: id,
-        },
-      });
+    //   setCheckedData({
+    //     ...checkedData,
+    //     [name]: {
+    //       name: name,
+    //       id: id,
+    //     },
+    //   });
+    let newData = {
+        name: name,
+        id: id,
+    }
+    setCheckedData([...checkedData, newData]);
     }
   };
   return useObserver(() => (
     <div>
       <p>{delmessage}</p>
-      {nameStore.names.map((a) => (
+      {nameStore.names.map((a ) => (
+      
         <div style={{ display: "flex", padding: "20px" }}>
           <p style={{ padding: "10px" }}>{a.name}</p>
           <p style={{ padding: "10px" }}>Id: {a.id}</p>

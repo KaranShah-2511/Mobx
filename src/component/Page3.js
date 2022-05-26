@@ -13,7 +13,7 @@ function Page3() {
     console.log("name", name);
     if (result) {
       nameStore.undoName(id, name);
-  
+
       //   return;
     }
     // console.log("You click No!");
@@ -21,6 +21,16 @@ function Page3() {
 
   return useObserver(() => (
     <div>
+      <h1>secondArray</h1>
+      {nameStore.secondArray.map((a) => (
+        <div style={{ display: "flex", padding: "20px" }}>
+          <p style={{ padding: "10px" }}>{a.name}</p>
+          <p style={{ padding: "10px" }}>Id: {a.id}</p>
+        </div>
+      ))}
+
+      <h1>Deleted Data</h1>
+
       {nameStore.deleteNames.map((a) => (
         <div style={{ display: "flex", padding: "20px" }}>
           <p style={{ padding: "10px" }}>{a.name}</p>

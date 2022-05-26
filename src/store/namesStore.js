@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 
 export function createNamesStore() {
- 
   return {
     names: [],
     deleteNames: [],
@@ -30,8 +29,21 @@ export function createNamesStore() {
     },
     moveData(items) {
       console.log("items....", items);
-     
-      //   this.names.push(items);
+      let i = 0;
+      let name = "";
+      let id = "";
+      //    var d = JSON.stringify(items);
+      for (i = 0; i < items.length; i++) {
+        // console.log("d....", items[i].name);
+        // console.log("d....", items[i].id);
+        name = items[i].name;
+        id = items[i].id;
+        console.log("name....", name);
+        console.log("id....", id);
+        this.secondArray.push({ name, id: id });
+        this.names = this.names.filter((name) => name.id !== id);
+      }
+    
     },
   };
 }
