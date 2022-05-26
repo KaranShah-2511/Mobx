@@ -5,8 +5,7 @@ import { useState } from "react";
 import { confirm } from "react-confirm-box";
 
 function Page2() {
-
-    //States 
+  //States
   const nameStore = useNameStore();
   const [newName, setNewName] = useState();
   const [status, setStatus] = useState();
@@ -15,7 +14,7 @@ function Page2() {
   const [checkedData, setCheckedData] = useState([]);
   console.log("checkedData.....", checkedData);
 
-//function
+  //function
   const del = async (id, name) => {
     console.log("id", id);
     const result = await confirm("Are you sure you want to delete?");
@@ -35,7 +34,7 @@ function Page2() {
     } else {
       setError("");
 
-      nameStore.addName(newName, id);
+      nameStore.updateName(newName, id);
     }
     setNewName("");
     console.log("new Name", newName, "Id", id);
@@ -43,7 +42,7 @@ function Page2() {
   const move = () => {
     console.log("checkedData.....", checkedData);
 
-    nameStore.moveData(checkedData);
+    nameStore.moveData(checkedData.reverse());
   };
   //   const selectAll = (event) => {
   //     const target = event.target;
@@ -71,15 +70,9 @@ function Page2() {
     }
   };
 
-  //Return html code   
+  //Return html code
   return useObserver(() => (
     <div>
-      {/* <input
-            type="checkbox"
-         
-            onChange={selectAll}
-          /> */}
-
       <p>{delmessage}</p>
       {nameStore.names.map((a) => (
         <div style={{ display: "flex", padding: "20px" }}>
@@ -87,9 +80,11 @@ function Page2() {
           <p style={{ padding: "10px" }}>Id: {a.id}</p>
           <input
             name={a.id}
+            placeholder="Enter New Name"
             onChange={(e) => setNewName(e.target.value)}
             type="text"
           />
+        
           <p>{error}</p>
           <button onClick={() => del(a.id, a.name)}> Delete</button>
           <button onClick={() => submit(a.id)} {...status}>

@@ -7,6 +7,7 @@ function Page1() {
   const [name, setName] = useState();
   const [status, setStatus] = useState();
   const [error, setError] = useState();
+  const [indexNumber, setIndexNumber] = useState();
 
   const submit = () => {
     if (!name) {
@@ -14,7 +15,7 @@ function Page1() {
       setError("Please enter a name");
     } else {
       setError("");
-      nameStore.addName(name );
+      nameStore.addName(name, indexNumber);
       setName("");
     }
   };
@@ -28,6 +29,12 @@ function Page1() {
         onChange={(e) => setName(e.target.value)}
         type="text"
       />
+      <input
+        placeholder="Enter Index"
+        onChange={(e) => setIndexNumber(e.target.value)}
+        type="number" 
+      />
+
       <p>{error}</p>
       <button onClick={submit} {...status}>
         Add note

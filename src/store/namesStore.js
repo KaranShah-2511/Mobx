@@ -5,19 +5,24 @@ export function createNamesStore() {
     names: [],
     deleteNames: [],
     secondArray: [],
-    addName(name, id ) {
-      if (id) {
-        const oldName = this.names.find((name) => name.id == id);
-        if (oldName) {
-          oldName.name = name;
-        }
+    addName(name, index) {
+      if (index) {
+          this.names.splice(index, 0, {
+              name,
+              id: nanoid(),
+          });
       } else {
         console.log(name, this.names);
 
         this.names.push({ name, id: nanoid() });
       }
     },
-
+    updateName(newName, id) {
+      const oldName = this.names.find((name) => name.id == id);
+      if (oldName) {
+        oldName.name = newName;
+      }
+    },
     deletedName(id, name) {
       this.deleteNames.push({ name, id: id });
       this.names = this.names.filter((name) => name.id !== id);
@@ -32,18 +37,18 @@ export function createNamesStore() {
       let i = 0;
       let name = "";
       let id = "";
-      //    var d = JSON.stringify(items);
       for (i = 0; i < items.length; i++) {
-        // console.log("d....", items[i].name);
-        // console.log("d....", items[i].id);
         name = items[i].name;
         id = items[i].id;
         console.log("name....", name);
         console.log("id....", id);
-        this.secondArray.push({ name, id: id });
+        // this.secondArray.push({ name, id: id });
+        this.secondArray.splice(0, 0, {
+            name,
+            id: id
+        });
         this.names = this.names.filter((name) => name.id !== id);
       }
-    
     },
   };
 }
