@@ -23,7 +23,8 @@ function Page2() {
   const [status, setStatus] = useState();
   const [error, setError] = useState();
   const [delmessage, setdelmessage] = useState();
-
+  const [checkedData, setCheckedData] = useState([]);
+  console.log("checkedData.....", checkedData);
   const submit = (id) => {
     if (!newName) {
       setStatus("disabled");
@@ -36,7 +37,29 @@ function Page2() {
     setNewName("");
     console.log("new Name", newName, "Id", id);
   };
+  const move = () => {
+    // console.log("checkedData.....", checkedData);
+  
+    nameStore.moveData(checkedData);
+  };
+  const handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    const id = target.id;
 
+    if (value) {
+      //   console.log("name", name);
+      //   console.log("id", id);
+      setCheckedData({
+        ...checkedData,
+        [id]: {
+          name: name,
+          id: id,
+        },
+      });
+    }
+  };
   return useObserver(() => (
     <div>
       <p>{delmessage}</p>
@@ -60,8 +83,17 @@ function Page2() {
           <button onClick={() => submit(a.id)} {...status}>
             submit
           </button>
+          <input
+            type="checkbox"
+            name={a.name}
+            id={a.id}
+            onChange={handleInputChange}
+          />
         </div>
       ))}
+      <button onClick={move} {...status}>
+        Move
+      </button>
     </div>
   ));
 }

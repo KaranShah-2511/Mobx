@@ -23,7 +23,7 @@ function Page1() {
     <div>
       <h1>Enter Name</h1>
       <input
-        value={name}
+        value={name || ''}
         onChange={(e) => setName(e.target.value)}
         type="text"
       />

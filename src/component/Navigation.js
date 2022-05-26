@@ -10,12 +10,12 @@ function Navigation() {
         <ul>
           <li>
             <Link to="/enterName">
-              <a href="#">Enter Name</a>
+            Enter Name
             </Link>
           </li>
           <li>
             <Link to="/showName">
-              <a href="#">Show Name</a>
+            Show Name
             </Link>
           </li>
           <li>
