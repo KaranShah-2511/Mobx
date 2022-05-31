@@ -74,12 +74,13 @@ function Page2() {
   return useObserver(() => (
     <div>
       <p>{delmessage}</p>
-      {nameStore.names.map((a) => (
-        <div style={{ display: "flex", padding: "20px" }}>
+      {nameStore.names.map((a, key) => (
+        <div key={key} style={{ display: "flex", padding: "20px" }}>
           <p style={{ padding: "10px" }}>{a.name}</p>
           <p style={{ padding: "10px" }}>Id: {a.id}</p>
           <input
             name={a.id}
+            value={newName || ""}
             placeholder="Enter New Name"
             onChange={(e) => setNewName(e.target.value)}
             type="text"
@@ -93,6 +94,7 @@ function Page2() {
           <input
             type="checkbox"
             name={a.name}
+            value={ ""}
             id={a.id}
             onChange={handleInputChange}
           />
